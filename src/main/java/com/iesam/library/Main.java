@@ -2,7 +2,6 @@ package com.iesam.library;
 
 import com.iesam.library.features.user.presentation.UserPresentation;
 
-import javax.xml.transform.stream.StreamSource;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +20,7 @@ public class Main {
             switch (choice){
                 case 1:
                     UserPresentation UserMenu  = new UserPresentation(sc);
-                    UserMenu.displayUsermenu();
+                    UserMenu.displayUserMenu();
                     break;
                 case 2:
                     System.out.println("<Info> Cerrando Programa...");

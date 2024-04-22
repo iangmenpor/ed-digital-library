@@ -23,7 +23,7 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public User getUser(Integer id) {
-        return null;
+        return dataSourceRepository.findById(id);
     }
 
     @Override

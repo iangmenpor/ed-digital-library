@@ -1,13 +1,11 @@
 package com.iesam.library.features.user.domain;
-
-import java.io.Serializable;
-
 public class User {
 
     public final Integer id;
     public final String name;
     public final String surname;
     public final String dni;
+
 
     public User(Integer id, String dni, String name, String surname) {
         this.id = id;
