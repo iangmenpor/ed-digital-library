@@ -6,7 +6,6 @@ import com.iesam.library.features.user.domain.GetUserUseCase;
 import com.iesam.library.features.user.domain.SaveUserUseCase;
 import com.iesam.library.features.user.domain.User;
 import java.util.Scanner;
-
 public class UserPresentation {
 
     private static Scanner sc;
