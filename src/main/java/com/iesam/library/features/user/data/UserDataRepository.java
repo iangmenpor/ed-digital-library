@@ -24,7 +24,7 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return dataSourceRepository.findAll();
     }
 
     @Override
