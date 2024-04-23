@@ -23,7 +23,8 @@ public class UserPresentation {
             System.out.println("2. Recuperar un usuario");
             System.out.println("3. Eliminar un usuario");
             System.out.println("4. Consultar usuarios de alta");
-            System.out.println("5. Volver a menú principal");
+            System.out.println("5. Modificar usuario de alta");
+            System.out.println("6. Volver a menú principal");
             System.out.println("+-------------------------------+");
             System.out.print("> Ingrese su elección: ");
             choice = sc.nextInt();
@@ -43,12 +44,15 @@ public class UserPresentation {
                     getUsers();
                     break;
                 case 5:
+                    updateUser();
+                    break;
+                case 6:
                     System.out.println("<Info> Volviendo a menu principal...");
                     break;
                 default:
                     System.err.println("<!> Opción no valida. Vuelva a intentarlo");
             }
-        } while (choice != 5);
+        } while (choice != 6);
     }
 
     private static void saveUser() {
@@ -129,4 +133,51 @@ public class UserPresentation {
         }
         return allUsers;
     }
+
+    private static void updateUser() {
+
+
+        UserDataRepository userDataRepository = new UserDataRepository();
+        GetUserUseCase getUserUseCase = new GetUserUseCase(userDataRepository);
+        UpdateUserUseCase updateUserUseCase = new UpdateUserUseCase(userDataRepository);
+        int id;
+        String dni, name, surname;
+
+
+        System.out.print("-> Introduce el id del usuario que deseas actualizar: ");
+        id = sc.nextInt();
+
+        User oldUser = getUserUseCase.execute(id);
+
+        if (oldUser != null) {
+            System.out.println("<Info> Recuperando información sobre el usuario con ID " + id);
+            System.out.println("  > " + oldUser);
+            System.out.print("- ¿Deseas actualizar este usuario?(Y|N): ");
+            char asw = sc.next().charAt(0);
+            char confirmation = Character.toUpperCase(asw);
+            sc.nextLine(); //consumo
+            switch (confirmation) {
+                case 'Y':
+                    System.out.print("-> Introduce el nuevo DNI: ");
+                    dni = sc.nextLine();
+                    System.out.print("-> Introduce el nuevo Nombre: ");
+                    name = sc.nextLine();
+                    System.out.print("-> Introduce el nuevo Apellido: ");
+                    surname = sc.nextLine();
+                    User updatedUser = new User (id,dni,name,surname);
+                    updateUserUseCase.execute(updatedUser);
+                    System.out.println("<OK> Datos actualizados.");
+                    break;
+                case 'N':
+                    System.out.println("<Info> Se ha cancelado la Actualización. Volviendo...");
+                    break;
+                default:
+                    System.err.println("<!> Opción no válida. Por favor introduce Y o N.");
+            }
+        } else {
+            System.err.println("<!> No se ha encontrado un Usuario con ese ID");
+        }
+        sc.nextLine(); //consumo
+    }
+
 }
