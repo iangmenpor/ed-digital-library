@@ -18,10 +18,6 @@ public class UserDataRepository implements UserRepository {
     }
 
     @Override
-    public void saveUserList(List<User> models) {
-    }
-
-    @Override
     public User getUser(Integer id) {
         return dataSourceRepository.findById(id);
     }
@@ -33,6 +29,6 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public void deleteUser(Integer id) {
-
+        dataSourceRepository.delete(id);
     }
 }
