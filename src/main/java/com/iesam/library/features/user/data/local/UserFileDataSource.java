@@ -41,7 +41,7 @@ public class UserFileDataSource implements DataSourceRepository{
             myWriter.close();
             System.out.println("<OK> Datos guardados correctamente");
         } catch (IOException e) {
-            System.out.println("<!> Ha ocurrido un error al guardar la información.");
+            System.err.println("<!> Ha ocurrido un error al guardar la información.");
             e.printStackTrace();
         }
     }
