@@ -8,4 +8,5 @@ public interface UserRepository {
     User getUser(Integer id);
     List<User> getUsers();
     void deleteUser(Integer id);
+    void updateUser(User user);
 }
