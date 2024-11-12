@@ -28,7 +28,5 @@ public class UserDataRepository implements UserRepository {
     }
 
     @Override
-    public void deleteUser(Integer id) {
-        dataSourceRepository.delete(id);
-    }
+    public void deleteUser(Integer id) {dataSourceRepository.delete(id);}
 }
